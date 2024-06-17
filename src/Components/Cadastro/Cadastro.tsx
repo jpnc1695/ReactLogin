@@ -1,17 +1,28 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Button, Paper, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Paper,
+  TextField,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const cinza = grey[50];
-const btnstyle = { 
-  margin: "8px 0" 
+const btnstyle = {
+  margin: "8px 0",
 };
 const textCss = {
-   color: cinza 
-  };
+  color: cinza,
+};
 const paperStyle = {
   padding: 20,
   height: "55vh",
@@ -27,9 +38,13 @@ const containerStyle = {
   width: "100%",
 };
 const Cadastro = () => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
 
-const navigate = useNavigate()
-  
   return (
     <Grid
       container
@@ -60,22 +75,50 @@ const navigate = useNavigate()
             fullWidth
             required
           />
-          <TextField
-            label="Senha"
-            placeholder="Digite sua Senha"
-            sx={{ mt: 1, mb: 1 }}
-            type="password"
-            fullWidth
-            required
-          />
-          <TextField
-            label="Confirmar Senha"
-            placeholder="Digite sua Senha novamente"
-            sx={{ mt: 1, mb: 1 }}
-            type="password"
-            fullWidth
-            required
-          />
+          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Senha
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Confirmar Senha
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
           <Button
             type="submit"
             color="primary"
