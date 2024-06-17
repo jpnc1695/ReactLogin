@@ -3,6 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import {
   Button,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -40,8 +41,20 @@ const containerStyle = {
 const Cadastro = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [passWord, setPassWord] = useState("");
+  const [confirmPassWord, setConfirmPassWord] = useState("");
+
+  const stateSenha = (e) => {
+    setPassWord(e.target.value);
+  };
+
+  const stateConfirmarSenha = (e) => {
+    setConfirmPassWord(e.target.value);
+  };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -60,14 +73,6 @@ const Cadastro = () => {
       >
         <Paper elevation={10} style={paperStyle}>
           <TextField
-            style={textCss}
-            label="Digite seu usuário"
-            placeholder="Digite seu usuário"
-            sx={{ mt: 1, mb: 1 }}
-            fullWidth
-            required
-          />
-          <TextField
             label="E-mail"
             placeholder="Digite seu e-mail"
             sx={{ mt: 1, mb: 1 }}
@@ -75,10 +80,8 @@ const Cadastro = () => {
             fullWidth
             required
           />
-          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Senha
-            </InputLabel>
+          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined" onChange={stateSenha}>
+            <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={showPassword ? "text" : "password"}
@@ -97,7 +100,7 @@ const Cadastro = () => {
               label="Password"
             />
           </FormControl>
-          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined">
+          <FormControl fullWidth sx={{ mt: 1, mb: 1 }} variant="outlined" onChange={stateConfirmarSenha}>
             <InputLabel htmlFor="outlined-adornment-password">
               Confirmar Senha
             </InputLabel>
@@ -116,14 +119,20 @@ const Cadastro = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
+              label="COnfirmar Senha"
             />
+              {
+                passWord !== confirmPassWord ? <FormHelperText id="component-helper-text"> As senhas devem ser iguais. </FormHelperText>:""
+              }
           </FormControl>
           <Button
             type="submit"
             color="primary"
             variant="contained"
             style={btnstyle}
+            onClick={() =>{
+              console.log(passWord)
+            }}
             fullWidth
           >
             Cadastrar
