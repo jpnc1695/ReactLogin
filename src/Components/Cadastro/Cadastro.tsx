@@ -7,9 +7,11 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Paper,
   TextField,
+  Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
@@ -27,7 +29,7 @@ const textCss = {
 const paperStyle = {
   padding: 20,
   height: "55vh",
-  width: 400,
+  width: 500,
   margin: "20px auto",
   backgroundColor: "rgba(255,255,255,0.9)",
 };
@@ -38,6 +40,20 @@ const containerStyle = {
   height: "100%",
   width: "100%",
 };
+
+function Copyright(props: any) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://github.com/jpnc1695" target="_blank" rel="noreferrer">
+        João Paulo Nunes Costa
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const Cadastro = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -148,6 +164,7 @@ const Cadastro = () => {
           >
             Voltar
           </Button>
+          <Copyright sx={{ mt: 5 }} />
         </Paper>
       </Grid>
     </Grid>
