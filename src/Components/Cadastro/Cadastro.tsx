@@ -1,31 +1,15 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  Link,
-  OutlinedInput,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {Button, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, Link, OutlinedInput, Paper, TextField, Typography,} from "@mui/material";
 import Grid from "@mui/material/Grid";
+import CssBaseline from "@mui/material/CssBaseline";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-const cinza = grey[50];
 const btnstyle = {
   margin: "8px 0",
 };
-const textCss = {
-  color: cinza,
-};
+
 const paperStyle = {
   padding: 20,
   height: "55vh",
